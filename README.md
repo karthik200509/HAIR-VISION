@@ -1,255 +1,133 @@
-# HairVision – AI HairStyle & HairCare Recommendation Platform
+# HairVision – AI-Powered Hair Analysis & Recommendation System
 
-A modern, responsive, production-style full-stack MERN application that helps **men and women** discover suitable hairstyles based on facial geometry, hair texture, length, lifestyle, and maintenance preferences, while providing personalized daily hair-care routines and product recommendations.
+[![HairVision AI](https://img.shields.io/badge/HairVision-v1.0.0-10b981.svg)](https://github.com/)
+[![React 19](https://img.shields.io/badge/Frontend-React%2019%20%2B%20Vite-38bdf8.svg)](https://react.dev/)
+[![Node Express](https://img.shields.io/badge/Backend-Node.js%20%2B%20Express-84cc16.svg)](https://expressjs.com/)
+[![Database](https://img.shields.io/badge/Database-MongoDB%20%2F%20Resilient%20Fallback-10b981.svg)](https://www.mongodb.com/)
+[![AI Vision](https://img.shields.io/badge/AI%20Vision-Google%20Gemini%20%2B%20Demo%20Mode-a855f7.svg)](https://ai.google.dev/)
+
+HairVision is a full-stack web application designed to help users understand their hair condition, identify visible scalp & strand concerns, explore flattering hairstyles, and receive tailored 7-day care regimens through AI-assisted optical analysis.
 
 ---
 
 ## 🌟 Key Features
 
-1. **Intelligent 100-Point Hairstyle Finder**:
-   - 7-step consultative wizard:
-     - Gender (Men, Women)
-     - Face Shape (Oval, Round, Square, Heart, Diamond, Oblong, Rectangle)
-     - Hair Type (Straight, Wavy, Curly, Coily)
-     - Hair Length (Very Short, Short, Medium, Long)
-     - Hair Thickness (Thin, Medium, Thick)
-     - Lifestyle (College Student, Office / Professional, Casual, Party / Events, Sports / Active, Traditional)
-     - Maintenance Preference (Low, Medium, High)
-   - Weighted compatibility scoring algorithm:
-     - Face Shape Match: **+30 pts**
-     - Hair Type Match: **+25 pts**
-     - Hair Length Match: **+15 pts**
-     - Hair Thickness Match: **+10 pts**
-     - Lifestyle Match: **+10 pts**
-     - Maintenance Match: **+10 pts**
-     - Total: **100%** maximum compatibility score.
-   - Shows match percentage badge, compatibility star rating, and exact anatomical match reasons.
+### 1. 🔬 AI Optical Hair & Scalp Analysis (Core Feature)
+- **Multi-Source Image Input**: Drag-and-drop or upload JPG, PNG, WEBP files, or test immediately with 4 one-click photographic sample archetypes (Straight, Wavy, Curly, Coily).
+- **Interactive Visual Scanner**: Animated laser sweep visualizer simulating optical follicular inspection.
+- **Follicular Density Gauge**: SVG circular score indicator (0–100%) categorizing density from Fine to High Density Volume.
+- **Pattern & Texture Classification**: Categorizes strand morphology from Type 1A to Type 4C.
+- **Visible Scalp Barrier Evaluation**: Analyzes root surface reflectivity to identify normal, dry, or sebum-congested scalp states.
+- **Identified Considerations**: Detects signs of cuticle roughness, split ends, frizz risk, and product buildup with severity ratings (*Mild*, *Moderate*, *Noticeable*).
+- **Personalized Regimen Matrix**: 
+  - Customized wash frequencies and shampoo types.
+  - Conditioning techniques and cuticle-sealing methods.
+  - Scalp stimulation frequencies.
+  - Recommended active ingredients (*Rosemary peptide, Murumuru butter, Silk protein*) vs. ingredients to avoid (*Harsh sulfates, drying alcohols*).
+- **Clinical Transparency**: Prominently labels educational observations and explains that image analysis cannot replace medical dermatological biopsies.
 
-2. **Rich Curated Hairstyle Catalogs**:
-   - **18 Men's Hairstyles**: Low Fade, Mid Fade, High Fade, Skin Fade, Buzz Cut, Crew Cut, French Crop, Textured Crop, Caesar Cut, Undercut, Slick Back, Side Part, Pompadour, Quiff, Messy Fringe, Curtains, Bro Flow, Man Bun.
-   - **17 Women's Hairstyles**: Bob Cut, Long Layers, Curtain Bangs, Wolf Cut, Butterfly Cut, Pixie Cut, Shag Cut, U Cut, V Cut, Straight Long Hair, Shoulder-Length Layers, Blunt Bob, Side-Swept Bangs, Beach Waves, Layered Cut, Long Bob (Lob), Textured Shag.
-   - Detailed hairstyle specifications: step-by-step styling routine, trim frequency, difficulty rating, and complementary product pairings.
+### 2. ✂️ Hairstyle Recommendation & 2026 Lookbook
+- **Interactive AI Style Matcher**: Choose your facial contour (Oval, Round, Square, Heart, Diamond) and hair pattern for instant scored compatibility recommendations.
+- **Filter & Search Engine**: Filter by hair type, face shape, length (Short, Medium, Long), and maintenance level.
+- **Hairstyle Blueprint Modals**: Detailed cards with high-resolution imagery, step-by-step styling rituals, difficulty ratings, and stylist advice.
 
-3. **Visual Consultation & Photo Analysis Staging ("Analyze My Hair")**:
-   - Drag-and-drop portrait photo uploader with preview and remove.
-   - Clean architectural hook for integrating real computer vision APIs.
-   - Interactive manual confirmation of face shape, hair type, length, and density.
+### 3. 📅 7-Day Personalized Care Routine
+- **Interactive Weekly Calendar**: Monday through Sunday care schedules tailored to straight, wavy, curly, or coily textures.
+- **Checkable Daily Tasks**: Wash days, scalp massagers, overnight silk wraps, and mid-week moisture refreshes with interactive checklist tracking.
+- **Trichology Golden Rules**: Scientifically grounded habits for preventing mechanical breakage and balancing the scalp microbiome.
 
-4. **Daily Hair Care Protocols**:
-   - Texture-specific routines for **Straight, Wavy, Curly, and Coily** hair.
-   - **Morning Routine**: Detangling, volume elevation, and UV/environmental defense.
-   - **Weekly Routine**: Cleansing cadence, deep conditioning masks, and scalp care.
-   - **Hair Concerns Guide**: Evidence-backed care for Dry Hair, Frizzy Hair, Oily Hair, Dandruff, Hair Breakage, Split Ends, Damaged Hair, and Lack of Volume with clinical dermatology consult reminders.
+### 4. 🔐 User Authentication & Scan History
+- **JWT Authentication & Password Hashing**: Secure user registration, login, and persistent sessions using `bcryptjs` and `jsonwebtoken`.
+- **Private Hair History**: Logged-in users automatically save all scans to their profile to track density scores and scalp progression over time.
+- **Zero-Config Resilient Database**: Automatically connects to local or Atlas MongoDB; if MongoDB is not active, seamlessly activates a local resilient data store (`backend/data/db.json`) so the application operates immediately with zero manual setup!
 
-5. **Filterable Products Catalog**:
-   - 22+ formulations across all 11 core categories: Shampoo, Conditioner, Hair Oil, Hair Serum, Hair Mask, Hair Cream, Hair Wax, Hair Gel, Heat Protectant, Hair Spray, Scalp Care.
-   - Live filtering by Category, Hair Type, Max Price, and Minimum Rating.
-
-6. **User Authentication & Dashboard**:
-   - Secure JWT authentication with bcrypt password hashing.
-   - Protected routes.
-   - User Dashboard featuring:
-     - Profile overview and personal traits editor.
-     - Bookmarked favorite hairstyles.
-     - Saved products wishlist.
-     - Historical recommendation logs.
-     - Personalized daily routine checklist.
-
-7. **Admin Control Panel**:
-   - Real-time platform analytics: total users, hairstyles count (men vs women), products, and recommendations.
-   - Hairstyle management: Add, edit, and delete hairstyles.
-   - Product management: Add, edit, and delete products.
-   - User management: View registered users and promote/demote roles.
-
-8. **Dual-Mode Database Architecture**:
-   - Seamlessly connects to MongoDB Atlas or local MongoDB via `MONGODB_URI`.
-   - If local MongoDB daemon is not running, it automatically spins up an embedded `mongodb-memory-server` in development mode and auto-seeds all 35 hairstyles, 22 products, and admin accounts.
+### 5. 🤖 AI Vision & Demo Mode
+- **Dual Pipeline Engine**:
+  - **Live AI Mode**: Configure `GEMINI_API_KEY` in `backend/.env` for real-time multi-modal vision inspection via Google Gemini 1.5 Flash.
+  - **Demo Simulation Mode**: If no API key is provided, the backend operates in an intelligent heuristic simulation mode, clearly badged with transparent user notifications so users can explore the full experience without prerequisites.
 
 ---
 
 ## 🛠️ Technology Stack
 
-### Frontend
-- **React.js (v18)** + **Vite**
-- **Tailwind CSS** (Custom luxury salon theme)
-- **React Router (v6)**
-- **Axios** (Centralized API client with JWT interceptor)
-- **Lucide React** (Modern iconography)
-
-### Backend
-- **Node.js** + **Express.js** (REST API)
-- **MongoDB** + **Mongoose**
-- **JWT (jsonwebtoken)** + **bcryptjs**
-- **CORS** + **dotenv** + **morgan**
-- **mongodb-memory-server** (Automatic zero-setup development fallback)
-
----
-
-## 📁 Project Structure
-
-```
-project.js/
-├── backend/
-│   ├── config/
-│   │   └── db.js                 # Database connection + memory server fallback
-│   ├── controllers/
-│   │   ├── authController.js     # Auth, register, profile
-│   │   ├── hairstyleController.js# Hairstyle CRUD + filters
-│   │   ├── recommendationController.js # 100-pt scoring engine
-│   │   ├── productController.js  # Product catalog CRUD
-│   │   ├── haircareController.js # Routines & hair concerns
-│   │   ├── favoriteController.js # User bookmarks
-│   │   └── adminController.js    # Admin stats & user management
-│   ├── middleware/
-│   │   ├── authMiddleware.js     # JWT verification & adminOnly check
-│   │   └── errorMiddleware.js    # Global error handler
-│   ├── models/
-│   │   ├── User.js
-│   │   ├── Hairstyle.js
-│   │   ├── Product.js
-│   │   ├── Recommendation.js
-│   │   └── Favorite.js
-│   ├── routes/                   # Express API routes
-│   ├── seed/
-│   │   ├── hairstylesData.js     # 35 hairstyles dataset
-│   │   ├── productsData.js       # 22 products dataset
-│   │   ├── haircareData.js       # Hair routines & concerns
-│   │   └── seed.js               # CLI & auto-seed script
-│   ├── utils/
-│   │   └── scoringEngine.js      # Weighted algorithm
-│   ├── .env.example
-│   ├── .env
-│   ├── server.js
-│   └── package.json
-│
-├── frontend/
-│   ├── src/
-│   │   ├── api/                  # Centralized API modules
-│   │   ├── components/
-│   │   │   ├── common/           # Navbar, Footer, StarRating, etc.
-│   │   │   ├── hairstyles/       # HairstyleCard
-│   │   │   └── products/         # ProductCard
-│   │   ├── context/
-│   │   │   ├── AuthContext.jsx   # Global auth state
-│   │   │   └── ToastContext.jsx  # Floating toast system
-│   │   ├── pages/                # All 11 platform pages
-│   │   ├── routes/               # Protected & public routes
-│   │   ├── App.jsx
-│   │   ├── main.jsx
-│   │   └── index.css
-│   ├── index.html
-│   ├── vite.config.js
-│   ├── tailwind.config.js
-│   └── package.json
-│
-└── README.md
-```
+- **Frontend**: React 19, Vite, React Router DOM v7, Axios, Lucide React icons, Canvas Confetti, CSS3 Custom Properties (Design System).
+- **Backend**: Node.js, Express.js, REST API, JWT Authentication, bcryptjs, Multer for image processing, CORS.
+- **Database**: MongoDB with Mongoose + Local JSON resilient fallback store.
+- **AI Vision**: Google Gemini Vision API (`gemini-1.5-flash`) + Intelligent Heuristic Demo Simulator.
 
 ---
 
 ## 🚀 Quick Start Guide
 
-### Prerequisites
-- Node.js (v18+ recommended, tested on v24)
-- npm (v9+)
-
-### 1. Backend Setup
+### 1. Install Dependencies
 ```bash
-cd backend
-npm install
-npm run seed     # (Optional: seeds DB immediately)
-npm start        # Runs backend on port 5000
+# Backend dependencies
+npm --prefix backend install
+
+# Frontend dependencies
+npm --prefix frontend install
 ```
 
-> **Note on MongoDB**: If you have MongoDB Atlas, paste your connection URI into `backend/.env`. If you don't have MongoDB running locally, the server will automatically launch an embedded in-memory MongoDB server and seed it for you!
+### 2. Configure Environment (Optional)
+Inspect `backend/.env`:
+```env
+PORT=5000
+CLIENT_URL=http://localhost:5173
+MONGODB_URI=mongodb://localhost:27017/hairvision
+JWT_SECRET=hairvision_secret_jwt_key_2026_super_secure
 
-### 2. Frontend Setup
-In a new terminal:
-```bash
-cd frontend
-npm install
-npm run dev      # Runs frontend on http://localhost:5173
+# Optional: Add your Google Gemini API Key for live vision model
+# If left blank, HairVision automatically runs in clearly labelled Demo Mode!
+GEMINI_API_KEY=
 ```
 
-Open your browser to `http://localhost:5173`.
+### 3. Launch Both Backend & Frontend
+Run the all-in-one launcher script:
+```bash
+node start-all.js
+```
+Or run separately:
+```bash
+# Terminal 1 (Backend on http://localhost:5000):
+npm --prefix backend start
+
+# Terminal 2 (Frontend on http://localhost:5173):
+npm --prefix frontend run dev
+```
+
+Open your browser at: **`http://localhost:5173`**
 
 ---
 
-## 🔑 Pre-Seeded Test Credentials
+## 🧪 Demo Test Credentials
 
-| Role | Email | Password |
+To quickly test authenticated features without typing:
+- **Email**: `alex@example.com`
+- **Password**: `password123`
+*(Or click the "Quick-Fill Sample Credentials" button on the Sign-In page!)*
+
+---
+
+## 📋 API Endpoints Summary
+
+| Method | Endpoint | Description |
 |---|---|---|
-| **Administrator** | `admin@hairvision.com` | `Admin@12345` |
-| **Demo User** | `karthik@example.com` | `Password@123` |
-
-*(You can also click the quick login buttons on the `/login` page for 1-click access!)*
-
----
-
-## 📡 REST API Reference
-
-### Authentication
-- `POST /api/auth/register` - Create user account
-- `POST /api/auth/login` - Authenticate & obtain JWT
-- `GET  /api/auth/me` - Get profile (Protected)
-- `PUT  /api/auth/profile` - Update profile & hair traits (Protected)
-
-### Recommendations & Scoring
-- `POST /api/recommendations` - Run 100-pt compatibility scoring engine
-- `GET  /api/recommendations/history` - Get user consultation history (Protected)
-
-### Hairstyles
-- `GET    /api/hairstyles` - Filterable query (`gender`, `faceShape`, `hairType`, `maintenance`, `search`)
-- `GET    /api/hairstyles/:id` - Get hairstyle details, similar styles & products
-- `POST   /api/hairstyles` - Add hairstyle (Admin only)
-- `PUT    /api/hairstyles/:id` - Update hairstyle (Admin only)
-- `DELETE /api/hairstyles/:id` - Delete hairstyle (Admin only)
-
-### Products
-- `GET    /api/products` - Filter by category, hair type, maxPrice, minRating, search
-- `GET    /api/products/:id` - Get product details & related items
-- `POST   /api/products` - Create product (Admin only)
-- `PUT    /api/products/:id` - Update product (Admin only)
-- `DELETE /api/products/:id` - Delete product (Admin only)
-
-### Hair Care
-- `GET /api/haircare/routines/:hairType?` - Routines for Straight, Wavy, Curly, Coily
-- `GET /api/haircare/concerns` - All 8 hair concerns & protocols
-- `GET /api/haircare/concerns/:id` - Specific concern breakdown
-
-### Favorites
-- `GET    /api/favorites` - Get user saved hairstyles & products (Protected)
-- `POST   /api/favorites` - Add item to favorites (Protected)
-- `DELETE /api/favorites/:id` - Remove item from favorites (Protected)
-- `GET    /api/favorites/check/:itemId` - Check favorite status (Protected)
-
-### Admin
-- `GET /api/admin/stats` - Total users, styles, products, recommendations (Admin only)
-- `GET /api/admin/users` - List all users (Admin only)
-- `PUT /api/admin/users/:id/role` - Toggle user role (Admin only)
+| `GET` | `/api/health` | System health, DB connection status & AI mode diagnostics |
+| `POST` | `/api/auth/register` | Register new user account |
+| `POST` | `/api/auth/login` | Sign in & receive JWT bearer token |
+| `GET` | `/api/auth/me` | Fetch authenticated user profile |
+| `PUT` | `/api/auth/profile` | Update user hair profile & preferences |
+| `POST` | `/api/analysis/scan` | Upload hair photo or preset for AI/Demo analysis |
+| `GET` | `/api/analysis/presets/sample-images` | Get one-click sample hair photographs |
+| `GET` | `/api/analysis/history` | Retrieve saved scans for logged-in user |
+| `GET` | `/api/analysis/:id` | Fetch specific scan record |
+| `DELETE` | `/api/analysis/:id` | Delete scan from user history |
+| `GET` | `/api/hairstyles` | Query hairstyles with search and multi-attribute filters |
+| `POST` | `/api/hairstyles/recommendations` | Get ranked cuts based on face shape & hair type |
+| `POST` | `/api/routine/generate` | Generate 7-day personalized care calendar |
 
 ---
 
-## ☁️ Deployment Instructions
+## ⚖️ Clinical & Educational Disclaimer
 
-### Deploy Frontend to Vercel
-1. Set framework preset to **Vite**.
-2. Root Directory: `frontend`
-3. Build Command: `npm run build`
-4. Output Directory: `dist`
-5. Environment Variable: `VITE_API_BASE_URL=https://your-backend-url.onrender.com/api`
-
-### Deploy Backend to Render / Railway
-1. Root Directory: `backend`
-2. Build Command: `npm install`
-3. Start Command: `npm start`
-4. Environment Variables:
-   - `PORT=5000`
-   - `MONGODB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/hairvision?retryWrites=true&w=majority`
-   - `JWT_SECRET=your_production_secret_key`
-   - `NODE_ENV=production`
-
----
-
-## ⚖️ Disclaimer
-HairVision recommendations are designed for styling, aesthetic facial symmetry, and cosmetic grooming purposes. For persistent or severe scalp scaling, hair thinning, or skin conditions, please consult a certified dermatologist or licensed medical trichologist.
+HairVision is an educational platform designed for cosmetic strand classification and personalized hair care ritual planning. Visual assessments generated through computer vision do not constitute medical diagnoses and cannot detect microscopic follicular pathologies, clinical scarring alopecias, or hormonal conditions. Always consult a board-certified dermatologist or trichologist for clinical evaluations.
